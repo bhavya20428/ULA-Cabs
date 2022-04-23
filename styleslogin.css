@@ -7,16 +7,19 @@
     border: 2px solid black;
     top:10%;
     left:35%;
-    max-height:450px;
+    max-height:490px;
     max-width:400px;   
     text-align: center;
     font-size:20px;
     border-radius: 20px;
     border:0px;
+    box-shadow:3px 3px #d8d5d570;
 }
 .forms form input{
+    border-radius: 5px;
     padding: 5px;
     height: 30px;
+    text-align:center;
     font-size:20px;
 }
 

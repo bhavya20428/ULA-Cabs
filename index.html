@@ -68,6 +68,7 @@
                 <label for="male" ><input type="radio" name="gender" id="male" value="male" >Male </label>
                 <label for="female"><input type="radio" name="gender" id="female" value="female" required>Female</label>
                 <label for="others"><input type="radio" name="gender" id="others" value="others">Others</label><br><br>
+                <label for="licenseNo">LicenseNo: <input type="tel" id="licenseNo" placeholder="ABC12345" name="licenseNo" pattern="[A-Z]{3}-[0-9]{5}"></label><br><br>
                 <button id="submit" type="submit" value="submit"> Submit</button>
             </form>
         </div>
@@ -83,6 +84,7 @@
 
         <div class="forms" id="customerlogin">
             <form autocomplete="off">
+                
                 <div class="cross" onclick="document.getElementById('customerlogin').style.display='none';">X</div>
                 <label for="user">Username: <input type="text" id="user" name="user" required></label><br><br>
                 <label for="pwd">Password:  <input type="password" id="pwd" name="pwd"required></label> <br><br>                
