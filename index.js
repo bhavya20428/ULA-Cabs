@@ -22,4 +22,10 @@ document.querySelector(".goback").addEventListener("click",function(){
     document.querySelector(".signup").style.display="none";
     document.querySelector(".goback").style.display="none";
     document.querySelector(".login").style.display="none";
+    document.querySelector(".middle").style.display="none";
+});
+
+document.querySelector(".signupcustomer").addEventListener("click",function(){
+    
+    document.querySelector(".middle").style.display="block";
 });

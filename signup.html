@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login!</title>
+        <link rel="stylesheet" href="styleslogin.css">
+    </head>
+
+    <body>
+        <div class="middle">
+            <form autocomplete="off">
+                <div id="cross" onclick="document.getElementById('survey-form').style.display='none';">X</div>
+                <label for="fname">First name: <input type="text" id="fname" name="fname " required></label><br><br>
+                <label for="lname">Last name:  <input type="text" id="lname" name="lname"required></label> <br><br>
+                <label for="phone">Phone No: <input type="tel" id="phone" placeholder="XXXX-XXX-XXX" name="phone" pattern="[0-9]{10}" required></label><br><br>
+                <label for="birthday">Date of Birth: <input type="date" id="birthday" name="birthday" required></label><br>
+                <br>Gender:	    	
+                <label for="male" ><input type="radio" name="gender" id="male" value="male" >Male </label>
+                <label for="female"><input type="radio" name="gender" id="female" value="female" required>Female</label>
+                <label for="others"><input type="radio" name="gender" id="others" value="others">Others</label><br><br>
+                <button id="submit" type="submit" value="submit"> Submit</button>
+            </form>
+        </div>
+    </body>
+   
+</html>
