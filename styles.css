@@ -8,23 +8,23 @@
 
 /*Home Page*/
 
-#upper{
+
+#upper{  
     height: 60%;
     width: 100%;
     background-color: pink;
     text-align: center;
     position: relative;    
     border-bottom-left-radius: 50% 25%;
-    border-bottom-right-radius: 50% 25%;   
-    
+    border-bottom-right-radius: 50% 25%;  
+   
 }
 
 
 #upper #hometext{
     position: absolute;
     left:47%;
-    bottom:30%;
-    /* display: inline-block; */
+    bottom:30%;    
 }
 
 #hometext h1{
@@ -35,22 +35,22 @@
 
 #hometext h2{
     font-size:35px;
-    font-family: 'Square Peg', cursive;
-    
+    font-family: 'Square Peg', cursive;    
 }
 
 #upper img{
     position: absolute;
-    left:10%;
+    left:10%;    
+    bottom: 20%;
     width:500px;
     height:200px;
-    bottom: 20%;
    
 }
 
 
 #lower{ 
     height: 40%;
+    width:100%;
     position: relative;
     text-align: center;    
 }
