@@ -53,6 +53,13 @@ body{
    
     
 }
+
+.sidebar li:hover{
+    background-color: white;
+    border-bottom:1px solid black;
+    color:black;
+
+}
 .rightside{
     margin-left:20px;
     width:84%;

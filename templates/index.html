@@ -3,13 +3,13 @@
         <title>Login Page</title>
         <meta charset="utf-8">
         <title>ULA CABS!</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="styleslogin.css">
+        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="stylesheet" href="/static/styleslogin.css">
     </head>
     <body>
        
         <div id="upper">
-            <img src="images/taxi-home.png">
+            <img src="/static/images/taxi-home.png">
             <div id="hometext">
                 <h1> ULA CABS</h1>
                 <h2>Explore new ways to travel with ULA!</h2>
@@ -83,15 +83,15 @@
         </div>
 
         <div class="forms" id="customerlogin">
-            <form autocomplete="off">
+            <form autocomplete="off" method="post" >
                 
                 <div class="cross" onclick="document.getElementById('customerlogin').style.display='none';">X</div>
                 <label for="user">Username: <input type="text" id="user" name="user" required></label><br><br>
                 <label for="pwd">Password:  <input type="password" id="pwd" name="pwd"required></label> <br><br>                
-                <button id="submit" type="submit" value="submit">Login</button>
+                <a src="customerportal.html"><button id="submit" type="submit" value="submit">Login</button></a>
             </form>
         </div>
 
-        <script src="index.js" charset="utf-8"></script>
+        <script src="/static/index.js" charset="utf-8"></script>
     </body>
 </html
