@@ -39,9 +39,9 @@
         </div>
 
         <div class="forms" id="customersign">
-            <form autocomplete="off">
+            <form autocomplete="off" method="POST" action="http://127.0.0.1:5000/customersign">
                 <div class="cross" onclick="document.getElementById('customersign').style.display='none';">X</div>
-                <label for="user">Username: <input type="text" id="user" name="user" required></label><br><br>
+                
                 <label for="pwd">Password:  <input type="password" id="pwd" name="pwd"required></label> <br><br>
                 <label for="fname">First name: <input type="text" id="fname" name="fname " required></label><br><br>
                 <label for="lname">Last name:  <input type="text" id="lname" name="lname"required></label> <br><br>
@@ -56,9 +56,9 @@
         </div>
 
         <div class="forms" id="driversign">
-            <form autocomplete="off">
+            <form autocomplete="off" method="POST" action="http://127.0.0.1:5000/driversign">
                 <div class="cross" onclick="document.getElementById('driversign').style.display='none';">X</div>
-                <label for="user">Username: <input type="text" id="user" name="user" required></label><br><br>
+               
                 <label for="pwd">Password:  <input type="password" id="pwd" name="pwd"required></label> <br><br>
                 <label for="fname">First name: <input type="text" id="fname" name="fname " required></label><br><br>
                 <label for="lname">Last name:  <input type="text" id="lname" name="lname"required></label> <br><br>
@@ -74,7 +74,7 @@
         </div>
 
         <div class="forms" id="driverlogin">
-            <form autocomplete="off">
+            <form autocomplete="off" method="POST" action="http://127.0.0.1:5000/driverlogin">
                 <div class="cross" onclick="document.getElementById('driverlogin').style.display='none';">X</div>
                 <label for="user">Username: <input type="text" id="user" name="user" required></label><br><br>
                 <label for="pwd">Password:  <input type="password" id="pwd" name="pwd"required></label> <br><br>                
@@ -83,12 +83,12 @@
         </div>
 
         <div class="forms" id="customerlogin">
-            <form autocomplete="off" method="post" >
+            <form autocomplete="off" method="POST" action="http://127.0.0.1:5000/customerlogin">
                 
                 <div class="cross" onclick="document.getElementById('customerlogin').style.display='none';">X</div>
-                <label for="user">Username: <input type="text" id="user" name="user" required></label><br><br>
+                <label for="phone">Phone No: <input type="tel" id="phone" placeholder="XXXX-XXX-XXX" name="phone" pattern="[0-9]{10}" required></label><br><br>
                 <label for="pwd">Password:  <input type="password" id="pwd" name="pwd"required></label> <br><br>                
-                <a src="customerportal.html"><button id="submit" type="submit" value="submit">Login</button></a>
+                <button id="submit" type="submit" value="submit">Login</button>
             </form>
         </div>
 
