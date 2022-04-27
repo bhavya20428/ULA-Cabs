@@ -27,9 +27,13 @@ def clogin():
 
         cur = mysql.connection.cursor()
              
-        check = cur.execute("SELECT * FROM USER where pwd= %s" % pwd)
-        if check>0:
-            return 'success'
+        cur.execute("SELECT pwd FROM USER where phoneNo="+mobileno)
+        rows=cur.fetchall()
+        
+        for i in rows:
+            if pwd == i[0]:
+            
+                return 'success'
         
         cur.close()
        
@@ -44,11 +48,14 @@ def dlogin():
         pwd = driverlogin['pwd']
 
         cur = mysql.connection.cursor()
-        a="SELECT * FROM DRIVER where pwd="+pwd+" ;"
         
-        check = cur.execute(a)
-        if check>0:
-            return 'success'
+        cur.execute("SELECT pwd FROM DRIVER where phoneNo="+mobileno)
+        rows=cur.fetchall()
+        
+        for i in rows:
+            if pwd == i[0]:
+            
+                return 'success'
         
         cur.close()
        
@@ -60,14 +67,14 @@ def dsign():
     if request.method=='POST':
         driversign=request.form
         pwd=driversign['pwd']
-        name=driversign['fname']+" "+driversign['lname']
+        name=driversign['fname']
         phone=driversign['phone']
         age=50
         gender=driversign['gender']
         licenseno=driversign['licenseNo']  
         cur = mysql.connection.cursor()
         
-        cur.execute("insert into DRIVER (driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID, password) values (1, %s, %d, %s, %d, 0, 0, NA, %s);",(name,age,gender,phone,pwd))
+        cur.execute("insert into DRIVER (driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID, password) values (1, %s, %d, %s, %s, 0, 0, NA, %s)",(name,age,gender,phone,pwd))
 
         mysql.connection.commit()
         cur.close()
