@@ -9,7 +9,8 @@ app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345'
+#app.config['MYSQL_PASSWORD'] = '12345'
+app.config['MYSQL_PASSWORD'] = 'Diya@1204'
 app.config['MYSQL_DB'] = 'ULA'
 mysql = MySQL(app)
 
@@ -27,13 +28,13 @@ def clogin():
 
         cur = mysql.connection.cursor()
              
-        cur.execute("SELECT pwd FROM USER where phoneNo="+mobileno)
+        cur.execute("SELECT phoneNo,pwd FROM USER where phoneNo="+mobileno)
         rows=cur.fetchall()
         
         for i in rows:
-            if pwd == i[0]:
+            if (mobileno == i[0]) and (pwd == i[1]):
             
-                return 'success'
+                return render_template('userportal.html')
         
         cur.close()
        
@@ -49,11 +50,11 @@ def dlogin():
 
         cur = mysql.connection.cursor()
         
-        cur.execute("SELECT pwd FROM DRIVER where phoneNo="+mobileno)
+        cur.execute("SELECT phoneNo,pwd FROM DRIVER where phoneNo="+mobileno)
         rows=cur.fetchall()
         
         for i in rows:
-            if pwd == i[0]:
+            if mobileno == i[0] and pwd == i[1]:
             
                 return 'success'
         
@@ -74,7 +75,31 @@ def dsign():
         licenseno=driversign['licenseNo']  
         cur = mysql.connection.cursor()
         
-        cur.execute("insert into DRIVER (driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID, password) values (1, %s, %d, %s, %s, 0, 0, NA, %s)",(name,age,gender,phone,pwd))
+        gender=gender[:1]
+        cur.execute("insert into DRIVER (driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID, password) values (1111, %s, %s, %s, %s, 1, 1, 3, %s)",(name,age,gender,phone,pwd))
+
+        mysql.connection.commit()
+        cur.close()
+
+        return 'success'
+    return 'hatt'  
+    
+
+@app.route('/customersign',methods=['POST','GET'])
+def csign():
+
+    if request.method=='POST':
+        usersign=request.form
+        pwd=usersign['pwd']
+        name=usersign['fname']
+        phone=usersign['phone']
+        age=50
+        gender=usersign['gender']
+        licenseno=usersign['licenseNo']  
+        cur = mysql.connection.cursor()
+        
+        gender=gender[:1]
+        cur.execute("insert into DRIVER (driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID, password) values (1111, %s, %s, %s, %s, 1, 1, 3, %s)",(name,age,gender,phone,pwd))
 
         mysql.connection.commit()
         cur.close()
