@@ -1,6 +1,7 @@
 
 from lib2to3.pgen2 import driver
-from flask import Flask, url_for,redirect,render_template,request
+import sys
+from flask import Flask, flash, url_for,redirect,render_template,request
 from flask_mysqldb import MySQL
 
 
@@ -9,8 +10,8 @@ app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-#app.config['MYSQL_PASSWORD'] = '12345'
-app.config['MYSQL_PASSWORD'] = 'Diya@1204'
+app.config['MYSQL_PASSWORD'] = '12345'
+# app.config['MYSQL_PASSWORD'] = 'Diya@1204'
 app.config['MYSQL_DB'] = 'ULA'
 mysql = MySQL(app)
 
@@ -33,7 +34,7 @@ def clogin():
         
         for i in rows:
             if (mobileno == i[0]) and (pwd == i[1]):
-            
+                
                 return render_template('userportal.html')
         
         cur.close()
@@ -55,7 +56,7 @@ def dlogin():
         
         for i in rows:
             if mobileno == i[0] and pwd == i[1]:
-            
+                
                 return 'success'
         
         cur.close()
@@ -70,18 +71,29 @@ def dsign():
         pwd=driversign['pwd']
         name=driversign['fname']
         phone=driversign['phone']
-        age=50
+        year=2022-int(driversign['birthday'][0:4])        
+        age=str(year)
         gender=driversign['gender']
         licenseno=driversign['licenseNo']  
         cur = mysql.connection.cursor()
+
+        cur.execute("select count(*) from USER")
+        num=str(cur.fetchall()[0][0]+1)
+
+        cur.execute("select vehicleID from Vehicle not in(select vehicleID from DRIVER")
+        vehicleID=cur.fetchall()[0][0]
+
+
         
         gender=gender[:1]
-        cur.execute("insert into DRIVER (driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID, password) values (1111, %s, %s, %s, %s, 1, 1, 3, %s)",(name,age,gender,phone,pwd))
+        cur.execute("insert into DRIVER (driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID, pwd) values (%s, %s, %s, %s, %s, '1', '1',%s , %s)",(num,name,age,gender,phone,vehicleID,pwd))
+
 
         mysql.connection.commit()
         cur.close()
 
-        return 'success'
+        # flash('You were successfully signed up')
+        return render_template('index.html')
     return 'hatt'  
     
 
@@ -93,18 +105,26 @@ def csign():
         pwd=usersign['pwd']
         name=usersign['fname']
         phone=usersign['phone']
-        age=50
+        year=2022-int(usersign['birthday'][0:4])        
+        age=str(year)
         gender=usersign['gender']
-        licenseno=usersign['licenseNo']  
+
+        cur = mysql.connection.cursor()
+        cur.execute("select count(*) from USER")
+        num=str(cur.fetchall()[0][0]+1)
+
         cur = mysql.connection.cursor()
         
         gender=gender[:1]
-        cur.execute("insert into DRIVER (driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID, password) values (1111, %s, %s, %s, %s, 1, 1, 3, %s)",(name,age,gender,phone,pwd))
+        cur.execute("insert into USER (userID, name, phoneNo, age, gender, pwd) values (%s, %s, %s, %s, %s, %s)",(num,name,phone,age,gender,pwd))
 
         mysql.connection.commit()
         cur.close()
+        
+        
+        return render_template('index.html')
 
-        return 'success'
+        
     return 'hatt'  
     
 
