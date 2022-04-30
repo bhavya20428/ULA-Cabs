@@ -4,6 +4,9 @@
 body {
   font-size: 14px;
 }
+
+
+
 .v40_223 {
   width: 100%;
   height: 1024px;
@@ -24,7 +27,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 0px;
-  left: 36px;
+  left: 0px;
   overflow: hidden;
 }
 .v40_225 {
@@ -34,7 +37,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 93px;
-  left: 30px;
+  left: 0px;
   overflow: hidden;
 }
 .v40_226 {
@@ -50,7 +53,8 @@ body {
 .v40_227 {
   width: 140px;
   height: 61px;
-  background: url("../images/v40_227.png");
+  background: url("https://media.istockphoto.com/vectors/london-cab-gradient-vector-icon-for-dark-theme-vector-id1336660240?b=1&k=20&m=1336660240&s=612x612&w=0&h=BBWMyHDMDwzTYU_JhlLM4oIsnQ13nlb0fboA5j9Y7dE=");
+
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -74,7 +78,7 @@ body {
 .v40_229 {
   width: 209px;
   height: 90px;
-  background: rgba(251,175,234,1);
+  background: rgb(255, 255, 255);
   opacity: 1;
   position: absolute;
   top: 283px;
@@ -186,7 +190,7 @@ body {
 .v40_239 {
   width: 671px;
   height: 733px;
-  background: rgba(251,175,234,0.8899999856948853);
+  background: rgba(243, 193, 232, 0.89);
   opacity: 1;
   position: absolute;
   top: 182px;
@@ -271,3 +275,110 @@ body {
   opacity: 1;
   text-align: center;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  }
+  
+  body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  }
+  
+  .container {
+  height: 900px;
+  width: 400px;
+  background-image: linear-gradient(#1e6b30, #308d46);
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  border-bottom-left-radius: 180px;
+  border-top-right-radius: 150px;
+  }
+  
+  .main-content {
+  height: 235px;
+  background-color: #1b923700;
+  border-bottom-left-radius: 90px;
+  border-bottom-right-radius: 80px;
+  border-top: #1e6b3000;
+  }
+  
+  .text {
+  text-align: center;
+  font-size: 300%;
+  text-decoration: aliceblue;
+  color: aliceblue;
+  }
+  
+  .course {
+  color: black;
+  font-size: 25px;
+  font-weight: bolder;
+  }
+  
+  .centre-content {
+  height: 180px;
+  margin: -70px 30px 20px;
+  color: rgb(0, 7, 14);
+  text-align: center;
+  font-size: 20px;
+  border-radius: 25px;
+  padding-top: 0.5px;
+ 
+  }
+  
+  .centre-content-h1 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-weight: normal;
+  }
+  
+  .price {
+  font-size: 60px;
+  margin-left: 5px;
+  bottom: 15px;
+  position: relative;
+  }
+  
+  .pay-now-btn {
+  cursor: pointer;
+  color: rgb(14, 2, 2);
+  height: 50px;
+  width: 290px;
+  border: none;
+  margin: 5px 30px;
+  background-color: rgba(71, 177, 61, 0);
+  position: relative;
+  }
+  
+  .card-details {
+  background: rgba(101, 144, 108, 0);
+  color: rgb(0, 0, 0);
+  margin: 10px 30px;
+  padding: 10px;
+  /* border-bottom-left-radius: 80px; */
+  }
+  
+  .card-details p {
+  font-size: 15px;
+  }
+  
+  .card-details label {
+  font-size: 15px;
+  line-height: 35px;
+  }
+  
+  .submit-now-btn {
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+  height: 30px;
+  width: 240px;
+  border: none;
+  margin: 5px 30px;
+  background-color: rgba(215, 77, 146, 0.856);
+  }
+  

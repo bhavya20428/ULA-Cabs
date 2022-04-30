@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html><head>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <link href="/static/main.css" rel="stylesheet" />
+    
+    <title>Document</title></head><body><div class="v31_174">
+        <div class="v31_175"></div><div class="v31_178"></div>
+        <span class="v31_179">logo</span><div class="v31_180">
+        </div><div class="v31_183">
+        <span class="v31_190">logout</span></div>
+
+        <div class="v31_185" id="customersign">
+            <form autocomplete="off">
+                <div class="cross" onclick="document.getElementById('customersign').style.display='none';">X</div>
+                <label for="user">Username: <input type="text" id="user" name="user" required></label><br><br>
+                <label for="pwd">Password:  <input type="password" id="pwd" name="pwd"required></label> <br><br>
+                <label for="fname">First name: <input type="text" id="fname" name="fname " required></label><br><br>
+                <label for="lname">Last name:  <input type="text" id="lname" name="lname"required></label> <br><br>
+                <label for="phone">Phone No: <input type="tel" id="phone" placeholder="XXXX-XXX-XXX" name="phone" pattern="[0-9]{10}" required></label><br><br>
+                <label for="birthday">Date of Birth: <input type="date" id="birthday" name="birthday" required></label><br>
+                <br>Gender:	    	
+                <label for="male" ><input type="radio" name="gender" id="male" value="male" >Male </label>
+                <label for="female"><input type="radio" name="gender" id="female" value="female" required>Female</label>
+                <label for="others"><input type="radio" name="gender" id="others" value="others">Others</label><br><br>
+                
+                <button id="submit" type="submit" value="submit"> Save Changes</button>
+            </form>
+        </div>
+        <script src="/static/index.js" charset="utf-8"></script>
+
+    </body>
+    </html>

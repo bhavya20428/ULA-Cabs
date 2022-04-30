@@ -10,8 +10,8 @@ app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345'
-# app.config['MYSQL_PASSWORD'] = 'Diya@1204'
+# app.config['MYSQL_PASSWORD'] = '12345'
+app.config['MYSQL_PASSWORD'] = 'Diya@1204'
 app.config['MYSQL_DB'] = 'ULA'
 mysql = MySQL(app)
 

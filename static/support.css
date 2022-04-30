@@ -1,8 +1,13 @@
 * {
   box-sizing: border-box;
 }
+@import "main.css";
 body {
   font-size: 14px;
+}
+.row {
+  margin-right: -15px;
+  margin-left: -40px;
 }
 .v40_284 {
   width: 100%;
@@ -24,7 +29,7 @@ body {
   opacity: 1;
   position: absolute;
   top: 0px;
-  left: 36px;
+  left: 0px;
   overflow: hidden;
 }
 .v40_286 {
@@ -32,9 +37,10 @@ body {
   height: 967px;
   background: rgba(0,0,0,1);
   opacity: 1;
+  
   position: absolute;
   top: 93px;
-  left: 30px;
+  left: 0px;
   overflow: hidden;
 }
 .v40_287 {
@@ -50,15 +56,15 @@ body {
 .v40_288 {
   width: 140px;
   height: 61px;
-  background: url("../images/v40_288.png");
-  background-repeat: no-repeat;
+  background: 
+  url("https://media.istockphoto.com/vectors/london-cab-gradient-vector-icon-for-dark-theme-vector-id1336660240?b=1&k=20&m=1336660240&s=612x612&w=0&h=BBWMyHDMDwzTYU_JhlLM4oIsnQ13nlb0fboA5j9Y7dE=");
+   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   opacity: 1;
   position: absolute;
   top: 16px;
   left: 31px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 .v40_289 {
@@ -99,6 +105,8 @@ body {
   position: absolute;
   top: 678px;
   left: 41px;
+  font-weight: Semi Bold;
+  font-size: 20px;
   overflow: hidden;
 }
 .v40_293 {
@@ -109,6 +117,7 @@ body {
   position: absolute;
   top: 412px;
   left: 41px;
+
   overflow: hidden;
 }
 .v40_294 {
@@ -186,8 +195,9 @@ body {
 .v40_300 {
   width: 929px;
   height: 653px;
-  background: rgba(255,255,255,1);
-  opacity: 1;
+  background: rgba(210, 201, 201, 0.911);
+
+  opacity: 0.8;
   position: absolute;
   top: 136px;
   left: 511px;
