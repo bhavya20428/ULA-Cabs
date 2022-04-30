@@ -10,8 +10,8 @@ app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = '12345'
-app.config['MYSQL_PASSWORD'] = 'Diya@1204'
+app.config['MYSQL_PASSWORD'] = '12345'
+# app.config['MYSQL_PASSWORD'] = 'Diya@1204'
 app.config['MYSQL_DB'] = 'ULA'
 mysql = MySQL(app)
 
@@ -56,12 +56,29 @@ def dlogin():
         
         for i in rows:
             if mobileno == i[0] and pwd == i[1]:
+                arr={mobileno,pwd}
                 
-                return 'success'
+                # return redirect(url_for('driverlogged'))
+                return redirect(url_for('dlogged', phoneno=mobileno,pwd=pwd))
         
         cur.close()
        
     return 'failure'
+
+@app.route('/driverlogged')
+def dlogged():
+    phoneno= request.args['phoneno']
+    pwd=request.args['pwd']
+    cur = mysql.connection.cursor()
+    cur.execute('Select name,age from Driver where phoneNo=%s and pwd=%s;',(phoneno,pwd))
+    rows=cur.fetchone()
+    cur.close()
+    
+
+    return render_template("driverprofile.html",name=rows[0],age=rows[1])
+
+
+
 
 @app.route('/driversign',methods=['POST','GET'])
 def dsign():
