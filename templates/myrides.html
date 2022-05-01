@@ -23,5 +23,46 @@
     <a class="v40_214" href="http://127.0.0.1:5000/">logout</a>
     <div class="v40_215">
 
-    </div><span class="v40_216">  My Rides </span><div class="v40_249"></div><span class="v40_253">Trip 1</span></div></body>
+    </div>
+    <span class="v40_216">  My Rides </span>
+    <div class="v40_249">
+    </div>
+</div>
+
+    <span class="v40_253">
+        {% if rows|length < 1 %}
+        <h2 style="text-align: center">No rides till now :( Ride with us now!</h2>
+        {% else %}
+        <table>
+            <tr>
+                <td>
+                    Trip ID
+                </td>
+                <td>
+                    Start Time
+                </td>
+                <td>
+                    End Time
+                </td>
+                <td>
+                    Status
+                </td>
+                <td>
+                    Price
+                </td>
+            </tr>
+            {% for row in rows %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[7]}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </span>
+
+</body>
     </html>

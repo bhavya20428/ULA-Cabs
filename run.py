@@ -108,7 +108,15 @@ def ulogged(userid):
 
 @app.route('/user/<userid>/myrides')
 def myrides(userid):
-    return render_template("myrides.html",userID=userid)
+    
+    cur = mysql.connection.cursor()
+    cur.execute('Select * from Trip where userid='+ userid)
+    rows=cur.fetchall()
+    cur.close()
+
+    print
+
+    return render_template("myrides.html",userID=userid,rows=rows)
 
 @app.route('/user/<userid>/booknow')
 def booknow(userid):
