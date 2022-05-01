@@ -10,8 +10,8 @@ app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '12345'
-# app.config['MYSQL_PASSWORD'] = 'Diya@1204'
+# app.config['MYSQL_PASSWORD'] = '12345'
+app.config['MYSQL_PASSWORD'] = 'Diya@1204'
 app.config['MYSQL_DB'] = 'ULA'
 mysql = MySQL(app)
 
@@ -105,6 +105,22 @@ def ulogged(userid):
 
     return render_template("profile.html", userID=rows[0], name=rows[1],phoneNo=rows[2] ,age=rows[3], gender=rows[4])
 
+
+@app.route('/user/<userid>/myrides')
+def myrides(userid):
+    return render_template("myrides.html",userID=userid)
+
+@app.route('/user/<userid>/booknow')
+def booknow(userid):
+    return render_template("booknow.html",userID=userid)
+
+@app.route('/user/<userid>/support')
+def support(userid):
+    return render_template("support.html",userID=userid)
+
+@app.route('/user/<userid>/rate')
+def rate(userid):
+    return render_template("rate.html",userID=userid)
 
 
 
