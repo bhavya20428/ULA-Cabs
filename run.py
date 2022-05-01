@@ -79,14 +79,36 @@ def dlogged(driverid):
 @app.route('/driver/<driverid>/TripRecords')
 def driver_trips(driverid):
     cur = mysql.connection.cursor()
-    cur.execute('select T.tripid, T.tripdate, T.starttime, T.endtime, T.price, T.distancecovered from Matched M, Trip T where M.tripID=T.tripid and M.driverID='+driverid)
+    cur.execute('select T.tripid, T.tripdate, T.starttime, T.endtime, T.price, T.distancecovered , M.description from Matched M, Trip T where M.tripID=T.tripid and M.driverID='+driverid)
     rows=cur.fetchall()
     return render_template("drivertrips.html",driverID=driverid,rows=rows)
     
     
 @app.route('/driver/<driverid>/MyRatings')
 def driver_ratings(driverid):
-    return render_template("driverratings.html",driverID=driverid)
+    cur = mysql.connection.cursor()
+    cur.execute('select M.ratings from Matched M where  M.driverID='+driverid)
+    rows=cur.fetchone()
+    ones=0
+    twos=0
+    threes=0
+    fours=0
+    fives=0
+    for i in rows:
+        if i==1:
+            ones+=1
+        elif i==2:
+            twos+=1
+        elif i==3:
+            threes+=1
+        elif i==4:
+            fours+=1
+        elif i==5:
+            fives+=1
+    avg=(1*ones+2*twos+3*threes+4*fours+5*fives)/(ones+twos+threes+fours+fives)
+
+    return render_template("driverratings.html",driverID=driverid,ones=ones,twos=twos,threes=threes,fours=fours,fives=fives,avg=avg)
+
 
 @app.route('/driver/<driverid>/RideRequests')
 def driver_request(driverid):
