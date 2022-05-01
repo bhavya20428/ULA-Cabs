@@ -10,8 +10,8 @@ app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = '12345'
-app.config['MYSQL_PASSWORD'] = 'Diya@1204'
+app.config['MYSQL_PASSWORD'] = '12345'
+# app.config['MYSQL_PASSWORD'] = 'Diya@1204'
 app.config['MYSQL_DB'] = 'ULA'
 mysql = MySQL(app)
 
@@ -78,7 +78,10 @@ def dlogged(driverid):
 
 @app.route('/driver/<driverid>/TripRecords')
 def driver_trips(driverid):
-    return render_template("drivertrips.html",driverID=driverid)
+    cur = mysql.connection.cursor()
+    cur.execute('select T.tripid, T.tripdate, T.starttime, T.endtime, T.price, T.distancecovered from Matched M, Trip T where M.tripID=T.tripid and M.driverID='+driverid)
+    rows=cur.fetchall()
+    return render_template("drivertrips.html",driverID=driverid,rows=rows)
     
     
 @app.route('/driver/<driverid>/MyRatings')

@@ -22,7 +22,29 @@
         <a href="http://127.0.0.1:5000/" class="v61_272">logout</a>
         <a href="http://127.0.0.1:5000/driver/{{driverID}}/Wallet" class="v61_273">Wallet</a>
         <div class="v61_201"></div>
-        <span class="v61_202">Show previous Trip Details here</span></div>
+        <span class="v61_202">
+         Previous Trip Details here
+        {% if rows|length < 1 %}
+        <h2 style="text-align: center">No trips done till now!</h2>
+        {% else %}
+            {% for row in rows %}
+                    <br><br>
+                    Trip ID:   {{row[0]}} <br>
+                    
+                    Date:   {{row[1]}} <br>
+               
+                    Start Time:  {{row[2]}}<br>
+                
+                    End Time:  {{row[3]}}<br>
+               
+                    Price:  Rs.{{row[4]}}<br>
+                
+                    Distance Covered:  {{row[5]}}km<br><br>
+
+            {% endfor %}
+        {% endif %}
+
+        </span></div>
 
 
 
