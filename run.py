@@ -114,8 +114,6 @@ def myrides(userid):
     rows=cur.fetchall()
     cur.close()
 
-    print
-
     return render_template("myrides.html",userID=userid,rows=rows)
 
 @app.route('/user/<userid>/booknow')
