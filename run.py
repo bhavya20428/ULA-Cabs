@@ -10,8 +10,8 @@ app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = '12345'
-app.config['MYSQL_PASSWORD'] = 'Diya@1204'
+app.config['MYSQL_PASSWORD'] = '12345'
+# app.config['MYSQL_PASSWORD'] = 'Diya@1204'
 app.config['MYSQL_DB'] = 'ULA'
 mysql = MySQL(app)
 
@@ -29,13 +29,13 @@ def clogin():
 
         cur = mysql.connection.cursor()
              
-        cur.execute("SELECT phoneNo,pwd FROM USER where phoneNo="+mobileno)
+        cur.execute("SELECT userid,phoneNo,pwd FROM USER where phoneNo="+mobileno)
         rows=cur.fetchall()
         
         for i in rows:
-            if (mobileno == i[0]) and (pwd == i[1]):
+            if (mobileno == i[1]) and (pwd == i[2]):
                 
-                return redirect(url_for('ulogged', phoneno=mobileno,password=pwd))
+                return redirect(url_for('ulogged', userid=i[0]))
         
         cur.close()
        
@@ -51,38 +51,54 @@ def dlogin():
 
         cur = mysql.connection.cursor()
         
-        cur.execute("SELECT phoneNo,password FROM DRIVER where phoneNo="+mobileno)
+        cur.execute("SELECT driverid,phoneNo,pwd FROM DRIVER where phoneNo="+mobileno)
         rows=cur.fetchall()
         
         for i in rows:
-            if mobileno == i[0] and pwd == i[1]:
+            if mobileno == i[1] and pwd == i[2]:
                 arr={mobileno,pwd}
                 
                 # return redirect(url_for('driverlogged'))
-                return redirect(url_for('dlogged', phoneno=mobileno,password=pwd))
+                return redirect(url_for('dlogged', driverid=i[0]))
         
         cur.close()
        
     return 'failure'
 
-@app.route('/driverlogged')
-def dlogged():
-    phoneno= request.args['phoneno']
-    pwd=request.args['password']
+@app.route('/driver/<driverid>')
+def dlogged(driverid):
+    
     cur = mysql.connection.cursor()
-    cur.execute('Select driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID from Driver where phoneNo=%s and password=%s;',(phoneno,pwd))
+    cur.execute('Select driverID, name, age, gender, phoneNo, totalAmountEarned, ratings, vehicleID from Driver where driverid='+ driverid )
     rows=cur.fetchone()
     cur.close()
     
 
     return render_template("driverprofile.html",driverID=rows[0], name=rows[1],age=rows[2], gender=rows[3],phoneNo=rows[4],totalAmountEarned=rows[5],ratings=rows[6],vehicleID=rows[7])
 
-@app.route('/userlogged')
-def ulogged():
-    phoneno= request.args['phoneno']
-    pwd=request.args['password']
+@app.route('/driver/<driverid>/TripRecords')
+def driver_trips(driverid):
+    return render_template("drivertrips.html",driverID=driverid)
+    
+    
+@app.route('/driver/<driverid>/MyRatings')
+def driver_ratings(driverid):
+    return render_template("driverratings.html",driverID=driverid)
+
+@app.route('/driver/<driverid>/RideRequests')
+def driver_request(driverid):
+    return render_template("driverbooks.html",driverID=driverid)
+
+@app.route('/driver/<driverid>/Wallet')
+def driver_wallet(driverid):
+    return render_template("driverwallet.html",driverID=driverid)
+
+
+@app.route('/user/<userid>')
+def ulogged(userid):
+   
     cur = mysql.connection.cursor()
-    cur.execute('Select userID, name, phoneNo , age, gender from User where phoneNo=%s and pwd=%s;',(phoneno,pwd))
+    cur.execute('Select userID, name, phoneNo , age, gender from User where userid='+userid)
     rows=cur.fetchone()
     cur.close()
     
