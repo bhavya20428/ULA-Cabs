@@ -28,7 +28,7 @@ def clogin():
         pwd = customerlogin['pwd']
 
         cur = mysql.connection.cursor()
-             
+        # cur.execute("create index login_user on ula.user(phoneNo,pwd);")
         cur.execute("SELECT userid,phoneNo,pwd FROM USER where phoneNo="+mobileno)
         rows=cur.fetchall()
         
@@ -50,7 +50,8 @@ def dlogin():
         pwd = driverlogin['pwd']
 
         cur = mysql.connection.cursor()
-        
+
+        #cur.execute("create index login_driver on ula.driver(phoneNo,pwd);")        
         cur.execute("SELECT driverid,phoneNo,pwd FROM DRIVER where phoneNo="+mobileno)
         rows=cur.fetchall()
         
@@ -87,6 +88,9 @@ def driver_trips(driverid):
 @app.route('/driver/<driverid>/MyRatings')
 def driver_ratings(driverid):
     cur = mysql.connection.cursor()
+   
+    # cur.execute('CREATE INDEX rates ON ula.driver(ratings);)
+  
     cur.execute('select M.ratings from Matched M where  M.driverID='+driverid)
     rows=cur.fetchone()
     ones=0
@@ -113,6 +117,8 @@ def driver_ratings(driverid):
 @app.route('/driver/<driverid>/RideRequests')
 def driver_request(driverid):
     cur = mysql.connection.cursor()
+    # cur.execute('alter table trip add index statuss (status);')
+
     cur.execute('select T.tripid, T.tripdate, T.starttime, T.endtime, T.price, T.distancecovered from  Trip T where T.status="Waiting"')
     rows=cur.fetchall()
     cur.close()
@@ -126,6 +132,7 @@ def addmatched(driverid):
         trip=request.form
         tripid=trip['tripid']
 
+        # cur.execute(' ALTER TABLE matched ADD INDEX driverids (driverID);')
         cur.execute("insert into Matched(ratings, description, waitingTime, otp, tripID, driverID) values(1,'NA',0,'1111',%s,%s)",(tripid,driverid))
         cur.execute("Update Trip set status='In Process' where Tripid="+tripid)
         mysql.connection.commit()
