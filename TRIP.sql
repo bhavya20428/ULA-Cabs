@@ -1002,3 +1002,5 @@ UPDATE Trip
 SET SharingID=null
 WHERE share=false;
 Select * from trip;
+
+delete from Matched where tripid in ( select tripid from Trip where status="Waiting");
