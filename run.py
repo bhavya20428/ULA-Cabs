@@ -11,8 +11,8 @@ app=Flask(__name__)
 
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-# app.config['MYSQL_PASSWORD'] = '12345'
-app.config['MYSQL_PASSWORD'] = 'Diya@1204'
+app.config['MYSQL_PASSWORD'] = '12345'
+# app.config['MYSQL_PASSWORD'] = 'Diya@1204'
 app.config['MYSQL_DB'] = 'ULA'
 mysql = MySQL(app)
 
@@ -23,6 +23,18 @@ def index():
 @app.route('/customerlogin',methods=['POST','GET'])
 def clogin():
     if request.method == 'POST':
+
+#        cur.execute( 'create view userpage as
+# (select user.name as username,t.tripID,driver.driverID, driver.name as driver,driver.phoneNo as "driver phone no",m.ratings,startTime,endTime,distanceCovered,sharingID,price,typeName,waitingTime,otp
+# from user 
+# INNER JOIN trip t
+#     on user.userID=t.userID
+# INNER JOIN matched m
+#     on t.tripID=m.tripID
+# INNER JOIN driver
+# on driver.driverID=m.driverID
+# );
+# select * from userpage;')
         
         customerlogin = request.form
         mobileno= customerlogin['phone']
@@ -45,6 +57,19 @@ def clogin():
 @app.route('/driverlogin',methods=['POST','GET'])
 def dlogin():
     if request.method == 'POST':
+
+    # cur.execute('create view driverpage as
+    # (select d.driverID, d.name as Drivername, d.age, d.gender, d.phoneNo, totalAmountEarned, 
+    # d.ratings, vehicleID,t.userID, t.pickupID, t.dropID,u.name as user_name, u.phoneNo as user_phone_no,
+    # t.share, t.sharingID, t.price
+    # from driver d
+    # INNER JOIN matched m
+    #     on d.driverID=m.tripID
+    # INNER JOIN trip t
+    #     on m.tripID=t.tripID
+    # INNER JOIN User u
+    # on t.userID=u.userID
+    # );') 
         
         driverlogin = request.form
         mobileno= driverlogin['phone']
@@ -317,7 +342,7 @@ def booktrip(userid):
         cur.close()
         
         
-        return redirect(url_for('/user/<userid>/payments', userid=userid))
+        return redirect(url_for('/user/<userid>', userid=userid))
 
         
     return 'hatt'  
