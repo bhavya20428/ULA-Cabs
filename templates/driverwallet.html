@@ -11,10 +11,31 @@
         <a href="http://127.0.0.1:5000/driver/{{driverID}}/TripRecords" class="v61_268">Trip Records</a>
         <a href="http://127.0.0.1:5000/driver/{{driverID}}/MyRatings" class="v61_269">My Ratings</a>
         <a href="http://127.0.0.1:5000/driver/{{driverID}}/RideRequests" class="v61_270">Ride requests</a>
-        <a href="http://127.0.0.1:5000/driver/{{driverID}}"class="v61_271">Register Cab </a>
         <a href="http://127.0.0.1:5000/" class="v61_272">logout</a>
         <a a href="http://127.0.0.1:5000/driver/{{driverID}}/Wallet" class="v61_273">Wallet</a>
         <div class="v61_274"></div>
-        <span class="v64_122">Amount of money present in the wallet </span>
-<span class="v64_123">Money Earned in the last trips record:
-</span><div class="v64_125"></div><div class="v64_126"></div></div></body></html>
+        <span class="v64_122">Amount of money present in the wallet: </span>
+        <span class="v64_123">Money Earned in the last trips record:
+            
+
+        </span>
+        <div class="v64_125" style="text-align:center; font-size:30px;">{{sum}}</div>
+        <div class="v64_126" style="text-align:center;font-size:20px">
+            {% if row|length < 1 %}
+                <h2 style="text-align: center">No Amount earned!</h2>
+            {% else %}
+                {% for i in row %}
+                   
+                        <br><br>
+                        Trip ID:   {{i[0]}} <br>
+                        Payment:   {{i[1]}}                 
+                        
+                    <br><br>  
+                   
+                    
+
+                    
+            {% endfor %}
+        {% endif %}
+
+        </div></div></body></html>

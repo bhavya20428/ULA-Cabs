@@ -20,7 +20,6 @@
         <a class="v61_237" href="http://127.0.0.1:5000/driver/{{driverID}}/TripRecords" class="v61_268">Trip Records</a>
         <a class="v61_238" href="http://127.0.0.1:5000/driver/{{driverID}}/MyRatings" class="v61_269">My Ratings</a>
         <a class="v61_239" href="http://127.0.0.1:5000/driver/{{driverID}}/RideRequests" class="v61_270">Ride requests</a>
-        <a class="v61_240" href="http://127.0.0.1:5000/driver/{{driverID}}"class="v61_271">Register Cab </a>
         <a class="v61_241" href="http://127.0.0.1:5000/" class="v61_272">logout</a>
         <a class="v61_242" href="http://127.0.0.1:5000/driver/{{driverID}}/Wallet" class="v61_273">Wallet</a>
         <!-- <span >profile</span>
@@ -31,10 +30,41 @@
         <span >logout</span>
         <span >Wallet</span> -->
         <div class="v61_243"></div>
-        <span class="v61_244">Users requesting Rides  </span>
-        <div class="v61_245"></div>
-        <div class="v61_253"></div>
-        <span class="v61_249">Book the Ride</span>
-        <span class="v61_254">Cancel the Ride</span></div>
+        <span class="v61_244">
+            <form method="POST" action="http://127.0.0.1:5000/driver/addtrip/{{driverID}}" style="font-size:24px"> 
+                <label for="tripid">TripID: <input type="text" id="tripid" name="tripid" required></label>
+                <button id="submit" type="submit" value="submit"> Submit</button>
+            </form>   <br><br>
+        Users requesting Rides:
+        {% if rows|length < 1 %}
+        <h2 style="text-align: center">No trips being requested!</h2>
+        {% else %}
+            {% for row in rows %}
+            <span style="font-size:10px;display: inline-block;">
+                    <br><br>
+                    Trip ID:   {{row[0]}} <br>
+                    
+                    Date:   {{row[1]}} <br>
+               
+                    Start Time:  {{row[2]}}<br>
+                
+                    End Time:  {{row[3]}}<br>
+               
+                    Price:  Rs.{{row[4]}}<br>
+                
+                    Distance Covered:  {{row[5]}}km<br>
+                    
+                   <br><br>  
+                   
+            </span>
+
+                    
+            {% endfor %}
+        {% endif %}
+
+
+        </span>
+        
+       
 </body>
 </html>

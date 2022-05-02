@@ -112,11 +112,43 @@ def driver_ratings(driverid):
 
 @app.route('/driver/<driverid>/RideRequests')
 def driver_request(driverid):
-    return render_template("driverbooks.html",driverID=driverid)
+    cur = mysql.connection.cursor()
+    cur.execute('select T.tripid, T.tripdate, T.starttime, T.endtime, T.price, T.distancecovered from  Trip T where T.status="Waiting"')
+    rows=cur.fetchall()
+    cur.close()
+
+    return render_template("driverbooks.html",driverID=driverid,rows=rows)
+
+@app.route('/driver/addtrip/<driverid>',methods=['POST','GET'])
+def addmatched(driverid):
+    cur = mysql.connection.cursor()
+    if request.method=='POST':
+        trip=request.form
+        tripid=trip['tripid']
+
+        cur.execute("insert into Matched(ratings, description, waitingTime, otp, tripID, driverID) values(1,'NA',0,'1111',%s,%s)",(tripid,driverid))
+        cur.execute("Update Trip set status='In Process' where Tripid="+tripid)
+        mysql.connection.commit()
+       
+
+        cur.execute('select T.tripid, T.tripdate, T.starttime, T.endtime, T.price, T.distancecovered , M.description from Matched M, Trip T where M.tripID=T.tripid and M.driverID='+driverid)
+        rows=cur.fetchall()
+        cur.close()
+        
+        return redirect(url_for('driver_trips',driverid=driverid))
+    
+    return 'hatt'
 
 @app.route('/driver/<driverid>/Wallet')
 def driver_wallet(driverid):
-    return render_template("driverwallet.html",driverID=driverid)
+    cur = mysql.connection.cursor()
+    cur.execute("select P.tripID,P.finalAmount from payment P, Matched M where P.tripID=M.tripID and M.driverID="+driverid)
+    row=cur.fetchall()
+    sum=0
+    for i in row:
+        sum+=i[1]
+    
+    return render_template("driverwallet.html",driverID=driverid,sum=sum,row=row)
 
 
 @app.route('/user/<userid>')
