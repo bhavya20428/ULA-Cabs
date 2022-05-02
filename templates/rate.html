@@ -1,45 +1,96 @@
-<!DOCTYPE html><html><head><link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
-    <link href="/static/rate.css" rel="stylesheet" /><title>rate</title></head><body>
-        <div class="v40_284">
-        <div class="v40_285"></div><div class="v40_286"></div><div class="v40_287"></div><div class="v40_288"></div>
-        <div class="v40_289"></div><div class="v40_290"></div>
-        <a  href="http://127.0.0.1:5000/user/{{userID}}/support" class="v40_291">support</a>
-        <a href="http://127.0.0.1:5000/user/{{userID}}/rate" class="v40_292"style="color:black;">Rate</a>
-        <div class="v40_293"></div>
-        <a class="v40_294" href="http://127.0.0.1:5000/user/{{userID}}">profile</a>
-        <a class="v40_295" href="http://127.0.0.1:5000/user/{{userID}}/booknow">book now</a>
-        <a class="v40_296" href="http://127.0.0.1:5000/user/{{userID}}/myrides">my rides</a>
-        <a href="http://127.0.0.1:5000/user/{{userID}}/support" class="v40_297" style="color: white;">support</a>
-        <a class="v40_299" href="http://127.0.0.1:5000/">logout</a><div class="v40_300"></div>
-        <div class="v40_301" style="margin-bottom:10px">Rate My Trip !</div>
-                  
+<!DOCTYPE html>
+<html><head>
+    <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+    <link href="/static/myrides.css" rel="stylesheet" />
+    <title>Document</title><link href="./css/main.css" rel="stylesheet" />
+    <title>Document</title></head><body><div class="v40_199"><div class="v40_200">
+
+    </div><div class="v40_201"></div><div class="v40_202"></div><div class="v40_203">
+
+    </div><div class="v40_204"></div><div class="v40_205"></div><div class="v40_206">
+
+    </div>
+    <div class="v40_207">
+
+    </div><div class="v40_208">
+
+    </div>
+    <a class="v40_209" href="http://127.0.0.1:5000/user/{{userID}}">profile</a>
+    <a class="v40_210" href="http://127.0.0.1:5000/user/{{userID}}/booknow">book now</a>
+    <a class="v40_211" href="http://127.0.0.1:5000/user/{{userID}}/myrides">my rides</a>
+    <a class="v40_212" href="http://127.0.0.1:5000/user/{{userID}}/support">support</a>
+    <a class="v40_213" href="http://127.0.0.1:5000/user/{{userID}}/rate">rate</a>
+    <a class="v40_214" href="http://127.0.0.1:5000/">logout</a>
+    <div class="v40_215">
+
+    </div>
+    <span class="v40_216">  Trips </span>
+    <div class="v40_249">
+    </div>
+</div>
+
+    <span class="v40_253">
+        {% if rows|length < 1 %}
+        <h2 style="text-align: center">No rides till now :( Ride with us now!</h2>
+        {% else %}
+        <table>
+            <tr>
+                <td>
+                    Trip ID
+                </td>
+                <td>
+                    Date
+                </td>
+                <td>
+                    Start Time
+                </td>
+                <td>
+                    End Time
+                </td>
+                <td>
+                    Status
+                </td>
+                <td>
+                    Price
+                </td>
+            </tr>
+            {% for row in rows %}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[12]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td>{{row[2]}}</td>
+                    <td>{{row[4]}}</td>
+                    <td>{{row[7]}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </span>
     
-    </a>
-            <span class="v40_302">
-                <img class="img1" src="https://loading.io/s/icon/ah6xlv.svg"
-               
-                style="float:right">
+<span class="v40_302">
+    <img class="img1" src="https://loading.io/s/icon/ah6xlv.svg"
+   
+    style="float:right">
 
 
-                <br>
-                
-                <form autocomplete="off">
-                <label for="* " ><input type="radio" name="gender" id="male" value="* " >1</label>
-                <br>
-                <label for="**"><input type="radio" name="gender" id="female" value="**" required>2</label><br>
-                <label for="***"><input type="radio" name="gender" id="others" value="***">3</label><br>
-                <label for="****" ><input type="radio" name="gender" id="male" value="****" >4 </label><br>
-                <label for="*****"><input type="radio" name="gender" id="female" value="*****"required>5</label><br><br>
+    <br><br>
+    
+    <form autocomplete="off">Rate <br>
+    <label for="* " ><input type="radio" name="gender" id="male" value="* " >1</label>
+    <label for="**"><input type="radio" name="gender" id="female" value="**" required>2</label>
+    <label for="***"><input type="radio" name="gender" id="others" value="***">3</label>
+    <label for="****" ><input type="radio" name="gender" id="male" value="****" >4 </label>
+    <label for="*****"><input type="radio" name="gender" id="female" value="*****"required>5</label><br><br>
 
-                <button id="submit" type="submit" value="submit"> Submit Rating </button>
-               </form>
-               <script src="/static/index.js" charset="utf-8"></script>
+    <button id="submit" type="submit" value="submit"> Submit Rating </button>
+   </form>
+   <script src="/static/index.js" charset="utf-8"></script>
 
 
-     
+
 
 </span>
 
-
-</div>
-</body></html>
+</body>
+    </html>

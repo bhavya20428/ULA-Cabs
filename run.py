@@ -1,5 +1,6 @@
 
 from lib2to3.pgen2 import driver
+from random import randrange
 import sys
 from flask import Flask, flash, url_for,redirect,render_template,request
 from flask_mysqldb import MySQL
@@ -188,9 +189,18 @@ def booknow(userid):
 def support(userid):
     return render_template("support.html",userID=userid)
 
+@app.route('/user/<userid>/payments')
+def payments(userid):
+    return render_template("payments.html",userID=userid)
+
 @app.route('/user/<userid>/rate')
-def rate(userid):
-    return render_template("rate.html",userID=userid)
+def rate(userid):    
+    cur = mysql.connection.cursor()
+    cur.execute('Select * from Trip where userid='+ userid)
+    rows=cur.fetchall()
+    cur.close()
+
+    return render_template("rate.html",userID=userid, rows=rows)
 
 
 
@@ -259,6 +269,58 @@ def csign():
     return 'hatt'  
     
 
+
+
+@app.route('/user/<userid>/booktrip',methods=['POST','GET'])
+def booktrip(userid):
+
+    if request.method=='POST':
+        booktrip=request.form
+        houseNo=booktrip['houseNo']
+        streetName=booktrip['streetName']
+        pincode=booktrip['pincode']
+        city=booktrip['city']
+        landmark=booktrip['landmark']
+        
+        cur = mysql.connection.cursor()
+        cur.execute("select count(*) from LOCATION")
+        n1=cur.fetchall()[0][0]
+        
+        num1=str(n1+1)
+        num2=str(n1+2)
+
+        cur = mysql.connection.cursor()
+        cur.execute("insert into LOCATION (locationID, houseNo, streetName, pincode, city, landmark) values (%s, %s, %s, %s, %s, %s)", (num1, houseNo, streetName, pincode, city, landmark))
+        
+        dhouseNo=booktrip['dhouseNo']
+        dstreetName=booktrip['dstreetName']
+        dpincode=booktrip['dpincode']
+        dcity=booktrip['dcity']
+        dlandmark=booktrip['dlandmark']
+        
+        cur = mysql.connection.cursor()
+        cur.execute("insert into LOCATION (locationID, houseNo, streetName, pincode, city, landmark) values (%s, %s, %s, %s, %s, %s)", (num2, dhouseNo, dstreetName, dpincode, dcity, dlandmark))
+        
+        cabType=booktrip['cabType']
+
+        cur = mysql.connection.cursor()
+        cur.execute("select count(*) from TRIP")
+        n=str(cur.fetchall()[0][0]+1)
+
+        cur = mysql.connection.cursor()
+        price = randrange(250,1000)
+        dist = randrange(5,50)
+        
+        cur.execute("insert into TRIP (tripID, startTime, endTime, distanceCovered, status, share, sharingID, price, typeName, pickupID, dropID, userID) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",(n, '09:05:22', '11:04:20', dist, 'Waiting', '0',NULL, price, cabType, num1, num2, userid))
+
+        mysql.connection.commit()
+        cur.close()
+        
+        
+        return redirect(url_for('/user/<userid>/payments', userid=userid))
+
+        
+    return 'hatt'  
 
    
 

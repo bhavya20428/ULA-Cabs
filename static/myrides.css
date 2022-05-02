@@ -231,3 +231,15 @@ table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
+.v40_302 {
+  width: 736px;
+  color: rgba(0,0,0,1);
+  position: absolute;
+  top: 500px;
+  left: 560px;
+  font-family: Inter;
+  font-weight: Bold;
+  font-size: 20px;
+  opacity: 1;
+  text-align: left;
+}

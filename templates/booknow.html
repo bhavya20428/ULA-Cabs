@@ -1,64 +1,56 @@
-<!DOCTYPE html>
-<html><head>
+<!DOCTYPE html><html><head>
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
-    <link href="/static/main.css" rel="stylesheet" /><title>book now</title>
-</head><body><div class="v38_172"><div class="v38_173"></div>
-    <div class="v38_174"></div><div class="v38_175"></div><div class="v38_176"></div><div class="v38_178"></div>
-    <div class="v38_179"></div><div class="v38_180"></div><div class="v38_181"></div><div class="v38_182"></div>
-    <span class="v38_183">profile</span><span style="color: palevioletred;"class="v38_184">book now</span><span class="v38_185">my rides</span>
-    <span class="v38_186">support</span><span class="v38_187">wallet</span><span class="v38_188">logout</span>
-    <div class="v38_189"></div><div class="v38_193">
-        
-        
-        <form autocomplete="off">
-            <div class="cross" onclick="document.getElementById('customersign').style.display='none';"></div>
-            
-            <label for="fname">Enter Pickup Location: <input type="text" id="fname" name="fname " required></label><br><br>
-            <label for="lname">Enter Drop Location:  <input type="text" id="lname" name="lname"required></label> <br><br>
-            <label for="phone">Phone No:<br> <input type="tel" id="phone" placeholder="XXXX-XXX-XXX" name="phone" pattern="[0-9]{10}" required></label><br><br>
-            <p>Choose Cab type</p>	<p>   	
-            <label for="male" ><input type="radio" name="gender" id="male" value="male" >HOVR</label><br>
+    <link href="/static/payments.css" rel="stylesheet" />
+    <title>Book Trip</title></head>
+    <body background="https://www.google.com/maps/d/thumbnail?mid=1GklQmWXAdXs5Tudj0yXad81_fxc"
+    ><div class="v40_223"><div class="v40_224"></div>
+        <div class="v40_225"></div><div class="v40_226"></div><div class="v40_227"></div>
+        <div class="v40_228"></div><div class="v40_229"></div><div class="v40_230"></div>
+        <div class="v40_231"></div><div class="v40_232"></div>
+        <a href="http://127.0.0.1:5000/user/{{userID}}" class="v40_233">profile</a>
+        <a href="http://127.0.0.1:5000/user/{{userID}}/booknow" class="v40_234">book now</a>
+        <a href="http://127.0.0.1:5000/user/{{userID}}/myrides" class="v40_235">my rides</a>
+        <a href="http://127.0.0.1:5000/user/{{userID}}/support" class="v40_236">support</a>
+        <a href="http://127.0.0.1:5000/user/{{userID}}/rate" class="v40_237">Rate</a>
+        <a href="http://127.0.0.1:5000/" class="v40_238">logout</a>
+        <div class="v40_239"></div>
+        <span class="v40_240">
 
-            <label for="others"><input type="radio" name="gender" id="others" value="others">Others</label><br><br>
-        </p> 
-            
-            <button id="submit" type="submit" value="submit"> Save Changes</button><br>
-        </form>
-    
-    <br><br></div><span class="v38_194">
-    </span><div class="v38_198">
-
-    </div>
-    <a href="https://www.google.co.in/"><span class="v38_199">Book Now</span> </a>
-    </div>
-  
-        <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
-        <link href="/static/payments.css" rel="stylesheet" />
-        <title>payments</title></head>
-        <body background="https://www.google.com/maps/d/thumbnail?mid=1GklQmWXAdXs5Tudj0yXad81_fxc"
-        ><div class="v40_223"><div class="v40_224"></div>
-            <div class="v40_225"></div><div class="v40_226"></div><div class="v40_227"></div>
-            <div class="v40_228"></div><div class="v40_229" style="background-color: palevioletred;"></div><div class="v40_230"></div>
-            <div class="v40_231"></div><div class="v40_232"></div>
-            <a href="http://127.0.0.1:5000/user/{{userID}}" class="v40_233">profile</a>
-            <a href="http://127.0.0.1:5000/user/{{userID}}/booknow" class="v40_234">book now</a>
-            <a href="http://127.0.0.1:5000/user/{{userID}}/myrides" class="v40_235">my rides</a>
-            <a href="http://127.0.0.1:5000/user/{{userID}}/support" class="v40_236">support</a>
-            <a href="http://127.0.0.1:5000/user/{{userID}}/rate" class="v40_237">Rate</a>
-            <a href="http://127.0.0.1:5000/" class="v40_238">logout</a>
-            <span class="v40_240">
-    
-                 
+             
+            <form autocomplete="off" method="POST" action="http://127.0.0.1:5000/user/{{userID}}/booktrip" id="booktrip">
+                <div class="cross" onclick="document.getElementById('user/{{userID}}/booktrip').style.display='none';"></div>
                 
-           
-    
-    
-           
-    
-            </div>
-           </div></body></html>
-    
-    
-    
-    
-    </html>
+                Enter Pickup Location:<br>
+                <label for="pickup">Enter House No:  <input type="text" id="houseNo" name="houseNo"required></label> <br><br>
+                <label for="pickup">Enter Street Name:  <input type="text" id="streetName" name="streetName"required></label> <br><br>
+                <label for="pickup">Enter Pincode:  <input type="text" id="pincode" name="pincode"required></label> <br><br>
+                <label for="pickup">Enter City:  <input type="text" id="city" name="city"required></label> <br><br>
+                <label for="pickup">Enter Landmark:  <input type="text" id="landmark" name="landmark"required></label> <br><br>
+                Enter Drop Location:<br>
+                <label for="drop">Enter House No:  <input type="text" id="dhouseNo" name="dhouseNo"required></label> <br><br>
+                <label for="drop">Enter Street Name:  <input type="text" id="dstreetName" name="dstreetName"required></label> <br><br>
+                <label for="drop">Enter Pincode:  <input type="text" id="dpincode" name="dpincode"required></label> <br><br>
+                <label for="drop">Enter City:  <input type="text" id="dcity" name="dcity"required></label> <br><br>
+                <label for="drop">Enter Landmark:  <input type="text" id="dlandmark" name="dlandmark"required></label> <br><br>
+                <p>Choose Cab type</p>	<p>   	
+                    <label for="micro" ><input type="radio" name="cabType" id="micro" value="micro" >Micro </label><br>
+                    <label for="mini"><input type="radio" name="cabType" id="mini" value="mini" required>Mini </label><br>
+                    <label for="Prime Sedan"><input type="radio" name="cabType" id="Prime Sedan" value="Prime Sedan">Prime Sedan</label><br>
+                    <label for="Prime SUV"><input type="radio" name="cabType" id="Prime SUV" value="Prime SUV">Prime SUV</label><br>
+                    <label for="Auto"><input type="radio" name="cabType" id="Auto" value="Auto">Auto</label><br>
+                    <label for="Bike"><input type="radio" name="cabType" id="Bike" value="Bike">Bike</label>
+                    <br><br>
+            </p> 
+                
+                <button id="submit" type="submit" value="submit"> Save Changes</button><br>
+            </form>
+                  
+                  
+                  
+       
+
+
+       
+
+        </div>
+       </div></body></html>
